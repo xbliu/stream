@@ -1,0 +1,45 @@
+
+typedef int (*push_func_t)(autel_pad_t *src_pad, autel_pad_t *sink_pad, void *buffer);
+
+typedef struct {
+	autel_entity_t *entity;
+	uint16_t index;
+	uint32_t dir;
+
+	list_head_t links;
+
+	push_func_t push_func;
+} autel_pad_t;
+
+typedef struct {
+	autel_pad_t *src_pad;
+	autel_pad_t *sink_pad;
+
+	list_head_t list;
+} autel_link_t;
+
+
+int (*entity_func_t)(autel_entity_t *entity, void *buffer, uint32_t len);
+
+typedef struct {
+	entity_func_t start;
+	entity_func_t stop;
+} entity_operations_t;
+
+typedef struct {
+	int num_srcpad;
+	autel_pad_t *src_pad;
+	autel_pad_t *sink_pad;
+
+	entity_operations_t *ops;
+
+	list_head_t list;
+} autel_entity_t;
+
+typedef struct {
+	uint16_t num_entity;
+	list_head_t entitys;
+} autel_pipe_t;
+
+
+
