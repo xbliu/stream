@@ -22,6 +22,7 @@ typedef struct {
 	uint32_t average;
 	uint32_t ref_time; //reference time
 	uint32_t video_format;
+	
 	void *priv;
 } frame_object_t;
 
@@ -46,6 +47,13 @@ typedef struct {
 	uint32_t height;
 	uint32_t pixel_format;
 } image_desc_t;
+
+typedef struct {
+	uint8_t running;
+	uint32_t type;
+	uint16_t stream_id;
+	void *pool_handle;
+} image_proc_task_t;
 
 
 /*
